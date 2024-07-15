@@ -10,6 +10,7 @@
  * Usermod compatibility: Existing wled06_usermod.ino mods should continue to work. Delete usermod.cpp.
  * New usermods should use usermod.cpp instead.
  */
+
 #include <Arduino.h>
 #include <shadow.pb.h>
 
@@ -27,13 +28,24 @@ Golain golain(GOLAIN_CERT_CA, GOLAIN_DEVICE_CERT, GOLAIN_PRIVATE_KEY);
 
 void onDeviceShadowUpdate(Shadow current, Shadow last) {
     Serial.println("Device shadow updated");
+
+    // Control the LED based on the shadow state
+    if (current.on) {
+      Serial.println("Toggled LED");
+    } else {
+      Serial.println("Toggled LED");
+    }
+    // Serial output char data type given from the console
+    // if(current.has_macAddr){
+    //   Serial.println(current.macAddr);
+    // }
 }
 
 
 void setup() {
   Serial.begin(115200);
 
-  WiFi.begin("CoolNetwork_2G", "Titanium3112");
+  WiFi.begin("Quoppo Ventures ", "Quopeupp");
 
   while (WiFi.status() != WL_CONNECTED) {
       delay(500);
@@ -41,6 +53,7 @@ void setup() {
   }
 
   Serial.println("Connected to WiFi");
+
 
   golain.setDeviceShadowCallback(&onDeviceShadowUpdate);
 
