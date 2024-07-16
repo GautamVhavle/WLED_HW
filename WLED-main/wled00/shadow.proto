@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Shadow {
+	bool on = 1;
+	uint32 buttonPressedCount = 2;
+}
